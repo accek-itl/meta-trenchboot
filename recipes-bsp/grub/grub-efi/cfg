@@ -1,0 +1,8 @@
+insmod net
+insmod efinet
+insmod http
+
+net_dhcp
+
+set prefix=(tftp,192.168.190.2)/test18/accek-tb
+configfile $prefix/grub.cfg
