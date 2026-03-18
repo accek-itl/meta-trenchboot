@@ -4,5 +4,5 @@ insmod http
 
 net_dhcp
 
-set prefix=(tftp,192.168.190.2)/test18/accek-tb
+set prefix=(tftp,192.168.190.2)/test12/accek-tb
 configfile $prefix/grub.cfg
