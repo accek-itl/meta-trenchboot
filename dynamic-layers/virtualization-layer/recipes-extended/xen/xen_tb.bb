@@ -6,7 +6,7 @@ require recipes-extended/xen/xen.inc
 # nooelint: oelint.file.requirenotfound
 require recipes-extended/xen/xen-hypervisor.inc
 
-SRC_URI:append = " file://xen.cfg"
+SRC_URI:append = " file://xen.cfg file://xhci.cfg"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
