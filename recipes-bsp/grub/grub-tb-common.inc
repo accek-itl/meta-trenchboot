@@ -5,8 +5,8 @@ SRC_URI = " \
            git://github.com/coreutils/gnulib;name=gnulib;branch=${BRANCH_gnulib};protocol=https;destsuffix=git/gnulib \
           "
 
-BRANCH_grub = "tb-dev-accek"
-SRCREV_grub = "14d1d2fdac5704590483e42465d8eeb7086c6df0"
+BRANCH_grub = "tb-dev-accek-test12"
+SRCREV_grub = "110d103c723118cedd15dcb168d0bc15f8cd42e5"
 
 # We add gnulib to SRC_URI to avoid downloading it during the do_configure().
 # The bootstrap script seems to be smart enough to skip fetching repo again
