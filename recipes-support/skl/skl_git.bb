@@ -5,11 +5,11 @@ HOMEPAGE = "https://github.com/TrenchBoot/secure-kernel-loader"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4641e94ec96f98fabc56ff9cc48be14b"
 
-DEPENDS = "util-linux-native"
+DEPENDS = "util-linux-native coreutils-native openssl-native xxd-native"
 
-SRC_URI = "git://github.com/TrenchBoot/secure-kernel-loader.git;protocol=https;branch=${BRANCH};name=skl"
-BRANCH = "skl-loader-amdsl-v11"
-SRCREV = "de1899007d038eeacf5edb8e63c0f0a4b3e265c4"
+SRC_URI = "git://github.com/accek-itl/secure-kernel-loader.git;protocol=https;branch=${BRANCH};name=skl"
+BRANCH = "skl-loader-amdsl-noblob-accek-test12"
+SRCREV = "52e21f9940bc757812818dfd5e82148588d86dcf"
 
 TUNE_CCARGS:remove = "-msse3 -mfpmath=sse"
 
@@ -17,7 +17,7 @@ S = "${WORKDIR}/git"
 FILES:${PN} += "${bindir}/skl /boot"
 RDEPENDS:${PN} = "bash"
 
-EXTRA_OEMAKE += "DEBUG=y"
+EXTRA_OEMAKE += "AMDSL=y LTO=y DEBUG=y DEBUGFB_BASE=0x8000000000 DEBUGFB_W=1024 DEBUGFB_H=768"
 SECURITY_STACK_PROTECTOR = ""
 lcl_maybe_fortify = ""
 
