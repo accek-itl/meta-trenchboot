@@ -21,3 +21,6 @@ local_conf_header:
     INHERIT += "externalsrc"
     EXTERNALSRC:pn-xen = "/work/xen"
     EXTERNALSRC_BUILD:pn-xen = "/work/xen"
+    EXTERNALSRC:pn-skl = "/work/skl"
+    EXTERNALSRC_BUILD:pn-skl = "/work/skl"
+    EXTERNALSRC:pn-grub-efi = "/work/grub"
