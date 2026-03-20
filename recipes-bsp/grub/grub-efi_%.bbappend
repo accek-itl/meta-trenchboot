@@ -15,4 +15,5 @@ GRUB_BUILDIN = " \
                 backtrace http linux usb usbserial_common usbserial_pl2303 \
                 usbserial_ftdi usbserial_usbdebug keylayouts at_keyboard \
                 multiboot2 slaunch net efifb lsmmap hexdump memrw \
+                debugmem \
                 "
