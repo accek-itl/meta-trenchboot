@@ -17,10 +17,3 @@ target:
 local_conf_header:
   no-sstate-mirror: |
     SSTATE_MIRRORS = ""
-  externalsrc: |
-    INHERIT += "externalsrc"
-    EXTERNALSRC:pn-xen = "/work/xen"
-    EXTERNALSRC_BUILD:pn-xen = "/work/xen"
-    EXTERNALSRC:pn-skl = "/work/skl"
-    EXTERNALSRC_BUILD:pn-skl = "/work/skl"
-    EXTERNALSRC:pn-grub-efi = "/work/grub"
