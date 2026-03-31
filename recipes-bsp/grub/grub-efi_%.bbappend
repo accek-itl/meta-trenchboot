@@ -1,6 +1,6 @@
 require grub-tb-common.inc
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/${DISTRO}:${THISDIR}/${PN}:"
 
 SRC_URI += "file://cfg"
 

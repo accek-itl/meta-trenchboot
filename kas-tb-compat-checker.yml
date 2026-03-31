@@ -1,0 +1,10 @@
+---
+header:
+  version: 8
+  includes:
+    - kas/common.yml
+
+distro: tb-compat-checker
+machine: genericx86-64
+target:
+  - tb-compat-checker-image
