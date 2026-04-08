@@ -14,6 +14,5 @@ GRUB_BUILDIN = " \
                 search_label serial sleep syslinuxcfg test tftp video xfs \
                 backtrace http linux usb usbserial_common usbserial_pl2303 \
                 usbserial_ftdi usbserial_usbdebug keylayouts at_keyboard \
-                multiboot2 slaunch net efifb lsmmap hexdump memrw \
-                debugmem \
+                multiboot2 slaunch net lsmmap hexdump memrw \
                 "

@@ -34,10 +34,16 @@ do_configure:prepend() {
 do_configure:append() {
     # Work around a workaround in poky!
     #
-    # Tarballs of 2.12 are missing this file, so poky creates it not taking into
-    # account that this breaks out-of-tree builds: Make finds the file as
-    # "extra_deps.lst" in the source tree for its dependency checking through
-    # VPATH, but shell commands run in the build tree don't check the source
-    # tree and just fail.
-    rm ${S}/grub-core/extra_deps.lst
+    # Tarballs of 2.12 are missing this file, so poky creates it not taking
+    # into account that this breaks out-of-tree builds: shell commands in Make
+    # rules run in the build tree and can't find the file in the source tree.
+    #
+    # We ensure an empty extra_deps.lst exists in both trees: grub-efi's
+    # Makefile uses $(top_srcdir) (needs it in S), while grub/grub-native
+    # use a relative path (needs it in B).
+    : > ${S}/grub-core/extra_deps.lst
+    if [ "${B}" != "${S}" ]; then
+        mkdir -p ${B}/grub-core
+        : > ${B}/grub-core/extra_deps.lst
+    fi
 }
