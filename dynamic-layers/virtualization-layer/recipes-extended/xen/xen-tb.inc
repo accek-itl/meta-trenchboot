@@ -4,9 +4,9 @@ PV = "${XEN_REL}+tb"
 
 SRC_URI = "git://github.com/accek-itl/xen.git;branch=${XEN_BRANCH};protocol=https"
 
-SRCREV = "ad7b5727bcde383957f69ff03a38ade1c82f531d"
+SRCREV = "14139fb3a91e73c42c8ddee155c28071f77356f9"
 
 S = "${WORKDIR}/git"
 
 XEN_REL = "4.17"
-XEN_BRANCH = "aem-next-accek"
+XEN_BRANCH = "aem-staging-2026-03-13-accek"
