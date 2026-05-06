@@ -1,6 +1,8 @@
 # nooelint: oelint.file.requirenotfound
 require recipes-core/images/core-image-minimal.bb
 
+inherit xen-unified-image
+
 SUMMARY = "TrenchBoot full initramfs image for network boot"
 DESCRIPTION = "Self-contained initramfs with Xen support, intended for PXE/network boot."
 LICENSE = "MIT"
