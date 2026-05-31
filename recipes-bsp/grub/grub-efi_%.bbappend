@@ -16,3 +16,12 @@ GRUB_BUILDIN = " \
                 usbserial_ftdi usbserial_usbdebug keylayouts at_keyboard \
                 multiboot2 slaunch net lsmmap hexdump memrw \
                 "
+
+# UEFI Secure Boot: sign the assembled grub EFI image with our development key
+# (no-op unless SECURE_BOOT_SIGN = "1"). grub keeps its shim_lock support
+# (i.e. NOT built --disable-shim-lock) so it can verify the chainloaded Xen UKI
+# via shim. The deployed image is ${GRUB_IMAGE_PREFIX}${GRUB_IMAGE}.
+inherit sb-sign
+do_deploy:append() {
+    sb_sign_file "${DEPLOYDIR}/${GRUB_IMAGE_PREFIX}${GRUB_IMAGE}"
+}

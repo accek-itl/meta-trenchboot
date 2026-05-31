@@ -24,3 +24,5 @@ local_conf_header:
     EXTERNALSRC:pn-skl = "/work/skl"
     EXTERNALSRC_BUILD:pn-skl = "/work/skl"
     EXTERNALSRC:pn-grub-efi = "/work/grub"
+  secureboot: |
+    SECURE_BOOT_SIGN = "1"

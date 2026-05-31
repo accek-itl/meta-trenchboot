@@ -4,6 +4,11 @@
 #
 # Delegates the section append/layout to QubesOS' uki-generate, provided
 # by the uki-generate-native recipe.
+#
+# When SECURE_BOOT_SIGN = "1", the assembled UKI is signed for UEFI Secure Boot
+# with our development key (sb-sign.bbclass).
+
+inherit sb-sign
 
 XEN_UNIFIED_NAME      ?= "xen-${MACHINE}.unified.efi"
 
@@ -21,6 +26,7 @@ do_xen_unified_image[depends] += "xen:do_deploy"
 do_xen_unified_image[depends] += "virtual/kernel:do_deploy"
 do_xen_unified_image[depends] += "binutils-native:do_populate_sysroot"
 do_xen_unified_image[depends] += "uki-generate-native:do_populate_sysroot"
+do_xen_unified_image[depends] += "${@'sbsigntool-native:do_populate_sysroot' if d.getVar('SECURE_BOOT_SIGN') == '1' else ''}"
 
 # Track the embedded xen.cfg in the task signature so edits invalidate the
 # cached unified image. Resolved at parse time against FILESPATH.
@@ -56,4 +62,9 @@ python do_xen_unified_image() {
 
     bb.note("xen-unified-image: %s" % ' '.join(cmd))
     subprocess.check_call(cmd)
+
+    # Sign the assembled UKI for Secure Boot (no-op unless SECURE_BOOT_SIGN=1).
+    # Signing must come last: the .kernel/.ramdisk sections are already appended,
+    # so the Authenticode signature covers the whole UKI.
+    sb_sign_path(d, out_path)
 }
