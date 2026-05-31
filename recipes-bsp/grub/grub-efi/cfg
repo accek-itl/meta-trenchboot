@@ -1,9 +1,25 @@
 insmod net
 insmod efinet
 insmod http
+insmod regexp
 
-#net_dhcp
 net_bootp
+sleep 2
+net_bootp
+sleep 1
 
-set prefix=(tftp,192.168.190.2)/test18/accek-tb
+set testnum=
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet0_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet1_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet2_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet3_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet4_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet5_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet6_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet7_dhcp_ip"
+regexp --set=1:testnum '^_172\.16\.([0-9]+)\.10$' "_$net_efinet8_dhcp_ip"
+echo "Detected test target: test${testnum}"
+sleep 1
+
+set prefix="(tftp,192.168.190.2)/test${testnum}/accek-tb"
 configfile $prefix/grub.cfg
