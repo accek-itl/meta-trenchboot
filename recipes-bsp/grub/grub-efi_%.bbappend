@@ -4,6 +4,20 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/${DISTRO}:${THISDIR}/${PN}:"
 
 SRC_URI += "file://cfg"
 
+# Mirror Qubes' grub builder: build the host utility programs (grub-mkimage,
+# grub-fstest, ...) with host flags rather than the freestanding target flags.
+EXTRA_OECONF += "--with-utils=host"
+
+# Poky's core2 tune (TUNE_CCARGS) injects -mfpmath=sse, which conflicts with the
+# -mno-sse that grub adds for its freestanding target build: cc1 warns "SSE
+# instruction set disabled, using 387 arithmetics". grub's configure feature
+# probes use a hardcoded -Werror (e.g. the -no-pie detection in acinclude.m4),
+# so that warning fails the probe; -no-pie is then dropped from TARGET_LDFLAGS
+# and linking the EFI image at an absolute address fails on this default-PIE
+# toolchain ("PHDR segment not covered by LOAD segment"). Fedora's grub build
+# doesn't pass -mfpmath=sse, so drop it here to match and keep grub unpatched.
+TUNE_CCARGS:remove = "-mfpmath=sse"
+
 
 GRUB_BUILDIN = " \
                 all_video boot btrfs cat chain configfile echo efifwsetup \
